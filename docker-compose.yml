@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: dockerfile-nginx
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /logs:/volume
+    networks:
+      - SuselNetwork
+
+  apache:
+    build:
+      context: .
+      dockerfile: dockerfile-apache
+    restart: always
+    ports:
+      - 8090:8090
+    networks:
+      - SuselNetwork
+
+networks:
+  SuselNetwork:

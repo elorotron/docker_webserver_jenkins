@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  nginx:
+    image: public.ecr.aws/f3h2t7h5/nginx_susel
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /output_logs:/volume
+    networks:
+      - SuselNetwork
+
+  apache:
+    image: public.ecr.aws/f3h2t7h5/apache_susel
+    restart: always
+    ports:
+      - 8090:8090
+    networks:
+      - SuselNetwork
+
+networks:
+  SuselNetwork:
