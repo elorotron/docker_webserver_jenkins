@@ -30,10 +30,10 @@ server {
     }
 
 
-    location /info.php {
-         proxy_pass http://apache:8090/;
-
-    }
+#    location /info.php {
+#         proxy_pass http://apache:8090/;
+#
+#    }
 
 #---------Regular expression-----------
 
