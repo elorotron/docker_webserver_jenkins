@@ -30,12 +30,9 @@ phases:
     commands:
       - echo Building the Docker image...
       - docker build -t $ECR_REPO_NAME_1:$ECR_IMAGE_TAG -f ./dockerfile-nginx .
-      - docker build -t $ECR_REPO_NAME_2:$ECR_IMAGE_TAG -f ./dockerfile-apache .
       - docker tag $ECR_REPO_NAME_1:$ECR_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME_1:$ECR_IMAGE_TAG
-      - docker tag $ECR_REPO_NAME_2:$ECR_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME_2:$ECR_IMAGE_TAG
-
+      
   post_build:
     commands:
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME_1:$ECR_IMAGE_TAG
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME_2:$ECR_IMAGE_TAG
