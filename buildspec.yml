@@ -9,7 +9,8 @@ env:
   variables:
     AWS_DEFAULT_REGION: "eu-central-1"
     AWS_ACCOUNT_ID    : "371428523361"
-    ECR_REPO_NAME     : "webapp"
+    ECR_REPO_NAME_1   : "nginx"
+    ECR_REPO_NAME_2   : "apache"
     ECR_IMAGE_TAG     : "latest"
 
 phases:
@@ -28,12 +29,13 @@ phases:
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t $ECR_REPO_NAME:$ECR_IMAGE_TAG .
-      - docker tag $ECR_REPO_NAME:$ECR_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME:$ECR_IMAGE_TAG
-      - docker tag $ECR_REPO_NAME:$ECR_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME:$COMMIT_ID
+      - docker build -t $ECR_REPO_NAME_1:$ECR_IMAGE_TAG -f ./dockerfile-nginx .
+      - docker build -t $ECR_REPO_NAME_2:$ECR_IMAGE_TAG -f ./dockerfile-apache .
+      - docker tag $ECR_REPO_NAME_1:$ECR_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME_1:$ECR_IMAGE_TAG
+      - docker tag $ECR_REPO_NAME_2:$ECR_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME_2:$ECR_IMAGE_TAG
 
   post_build:
     commands:
       - echo Pushing the Docker image...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME:$ECR_IMAGE_TAG
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME:$COMMIT_ID
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME_1:$ECR_IMAGE_TAG
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME_2:$ECR_IMAGE_TAG
