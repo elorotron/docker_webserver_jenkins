@@ -27,4 +27,4 @@ phases:
   post_build:
     commands:
       - echo Pushing the Docker image...
-      - docker push $REPO/ECR_REPO_NAME_1:$ECR_IMAGE_TAG
+      - docker push $REPO/$ECR_REPO_NAME_1:$ECR_IMAGE_TAG
