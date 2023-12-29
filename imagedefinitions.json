@@ -1,7 +1,7 @@
 [
     {
       "name": "nginx",
-      "imageUri": "suselstar/nginx:latest",
+      "imageUri": "suselstar/nginx:aws",
       "portMappings": [
         {
           "containerPort": 80,
