@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "arn:aws:ecs:eu-central-1:371428523361:task-definition/susel-taskdef:2"
+        TaskDefinition: "arn:aws:ecs:eu-central-1:371428523361:task-definition/webserver-susel-task-1:29"
         LoadBalancerInfo:
           ContainerName: "nginx"
           ContainerPort: 80
