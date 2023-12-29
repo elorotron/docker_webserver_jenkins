@@ -4,7 +4,7 @@ env:
   variables:
     REPO              : "suselstar"
     ECR_REPO_NAME_1   : "nginx"
-    ECR_IMAGE_TAG     : "latest"
+    ECR_IMAGE_TAG     : "aws"
     REGISTRY_URL      : "https://index.docker.io/v1/"
 
 phases:
